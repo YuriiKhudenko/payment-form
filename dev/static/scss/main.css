@@ -1,0 +1,92 @@
+@import url(../../../../node_modules/reset-css/reset.css);
+@font-face {
+  font-family: "SF UI Text";
+  src: url(../../fonts/SanFrancisco/sfregular/SFUIText-Regular.woff) format("woff"), url(../../fonts/SanFrancisco/sfregular/SFUIText-Regular.woff2) format("woff2"), url(../../fonts/SanFrancisco/sfregular/SFUIText-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: "normal"; }
+@font-face {
+  font-family: "SF UI Text";
+  src: url(../../fonts/SanFrancisco/sfbold/SFUIText-Bold.woff) format("woff"), url(../../fonts/SanFrancisco/sfbold/SFUIText-Bold.woff2) format("woff2"), url(../../fonts/SanFrancisco/sfbold/SFUIText-Bold.ttf) format("truetype");
+  font-weight: 600;
+  font-style: "normal"; }
+@font-face {
+  font-family: "SF UI Text";
+  src: url(../../fonts/SanFrancisco/sfmedium/SFUIText-Medium.woff) format("woff"), url(../../fonts/SanFrancisco/sfmedium/SFUIText-Medium.woff2) format("woff2"), url(../../fonts/SanFrancisco/sfmedium/SFUIText-Medium.ttf) format("truetype");
+  font-weight: 500;
+  font-style: "normal"; }
+html {
+  font-family: 'SF UI Text', Arial, serif;
+  font-size: 16px;
+  height: 100%; }
+
+body {
+  height: 100%;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5; }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box; }
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  color: #444444; }
+
+ol, ul {
+  list-style: none; }
+
+img {
+  max-width: 100%;
+  display: block; }
+
+input,
+button,
+textarea,
+select {
+  font: inherit; }
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video,
+textarea {
+  vertical-align: middle; }
+
+textarea {
+  resize: none; }
+
+section {
+  position: relative; }
+
+input,
+select,
+button {
+  outline: none; }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%; }
+
+.content {
+  flex: 1 0 auto; }
+
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+  max-width: 1000px;
+  width: 100%; }
+
+footer {
+  flex: 0 0 auto; }
+
+header {
+  flex: 0 0 auto; }
+
+/*# sourceMappingURL=main.css.map */

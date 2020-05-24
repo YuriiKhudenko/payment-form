@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,MAAO;EAAE,IAAI,EAAE,QAAQ;;ACAvB,MAAO;EAAE,IAAI,EAAE,QAAQ",
+"sources": ["footer/footer.scss","header/header.scss"],
+"names": [],
+"file": "modules.css"
+}
