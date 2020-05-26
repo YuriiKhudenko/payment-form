@@ -1,0 +1,33 @@
+.laptop-hide {
+
+  @include laptop {
+    display: none;
+  }
+}
+.mob-hide {
+  display: none;
+}
+.tab-hide {
+  @include tablet {
+    display: none;
+  }
+}
+.laptop-show {
+
+  @include laptop {
+    display: block;
+  }
+}
+.mob-show {
+  display: block;
+}
+.tab-show {
+  @include tablet {
+    display: block;
+  }
+}
+
+.svg-sprite-icon {
+  width: 100%;
+  height: 100%;
+}

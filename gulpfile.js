@@ -45,9 +45,7 @@ gulp.task('browser-sync', function () {
 
 gulp.task('pug', function () {
   return gulp.src('dev/pug/*.pug')
-    .pipe(pug({
-      pretty: true
-    }))
+    .pipe(pug())
     .pipe(gulp.dest('build'))
 });
 
@@ -57,7 +55,7 @@ gulp.task('pug', function () {
 gulp.task('scss', function () {
   return gulp.src('dev/static/scss/main.scss')
     .pipe(sourcemaps.init())
-    .pipe(scss().on('error', scss.logError))
+    .pipe(scss({ outputStyle: 'compressed' }).on('error', scss.logError))
     .pipe(csso())
     .pipe(autoprefixer({
       overrideBrowserslist:  [ "last 4 version" ],
@@ -71,7 +69,7 @@ gulp.task('scss', function () {
 // ======= JS ========
 gulp.task('script-libs', function () {
   return gulp.src(['node_modules/jquery/dist/jquery.min.js',
-    'node_modules/jquery-validation/dist/jquery.validate.min.js'])
+  'node_modules/parsleyjs/dist/parsley.min.js'])
     .pipe(concat('libs.min.js'))
     .pipe(gulp.dest('build/js/libs'))
 });

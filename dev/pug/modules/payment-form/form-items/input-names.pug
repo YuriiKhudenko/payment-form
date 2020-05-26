@@ -4,5 +4,17 @@ block input-names
         .payment-form__item-inp
             label(class='payment-form__item-title') Cardholder Name
         div(class="payment-form__inp-wrap")
-            input(type='text' class='form-control' name='first-name' required placeholder='First Name')
-            input(type='text' class ='form-control' name='last-name' placeholder='Last Name')
+            .inp-message-wrap
+                input(
+                    type='text'
+                    class='form-control'
+                    name='first-name'
+                    placeholder='First Name'
+                    data-parsley-required)
+            .inp-message-wrap
+                input(
+                    type='text'
+                    class ='form-control'
+                    name='last-name'
+                    placeholder='Last Name'
+                    data-parsley-required)
