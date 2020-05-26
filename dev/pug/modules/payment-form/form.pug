@@ -1,7 +1,7 @@
 
 
 block form
-    form(action='/' method='POST' class='payment-form-wrap__form payment-form')
+    form(method="POST"  class='payment-form-wrap__form payment-form')
 
         .payment-form__inputs-wrap
 
@@ -18,7 +18,9 @@ block form
             include ./form-items/input-zip
                 block input-zip
 
+            button(type='submit' class='btn btn-action payment-form__sbmt-btn mob-hide laptop-show') Start My Subscription for $19.99/mo.
+
         include ./paypal-item
             block paypal-item
 
-        button(type='submit' class='btn btn-action payment-form__sbmt-btn') Start My Subscription for $19.99/mo.
+        button(type='submit' class='btn btn-action payment-form__sbmt-btn laptop-hide') Start My Subscription for $19.99/mo.

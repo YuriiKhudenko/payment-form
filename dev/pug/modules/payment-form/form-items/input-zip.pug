@@ -4,5 +4,13 @@ block input-zip
         .payment-form__item-inp
             label(class='payment-form__item-title') Zip Code
         .payment-form__inp-wrap
-            input(type='text' class='form-control' name='card-zip' placeholder='01001')
+            .inp-message-wrap
+                input(
+                    type='text'
+                    class='form-control'
+                    name='card-zip'
+                    placeholder='01001'
+                    data-parsley-required
+                    data-parsley-type="number"
+                    )
 

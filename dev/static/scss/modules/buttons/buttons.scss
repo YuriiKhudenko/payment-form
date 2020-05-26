@@ -21,4 +21,8 @@
   background-color: $action-button;
   border: 1px solid #fd7722;
   font-weight: 700;
+
+  &:hover {
+    opacity: .8;
+  }
 }

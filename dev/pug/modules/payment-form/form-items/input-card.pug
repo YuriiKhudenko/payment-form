@@ -4,6 +4,17 @@ block input-card
         .payment-form__item-inp
             label(class='payment-form__item-title') Card Number
         .payment-form__inp-wrap
-            input(type='text' class='form-control' name='card-number' id='card-number-inp' placeholder='.... .... .... ....')
+            .inp-message-wrap
+                input(
+                    type='text'
+                    class='form-control'
+                    name='card-number'
+                    id='card-number-inp'
+                    placeholder='⦁⦁⦁⦁ ⦁⦁⦁⦁ ⦁⦁⦁⦁ ⦁⦁⦁⦁'
+                    data-parsley-length="[16, 19]"
+                    data-parsley-required
+                    data-parsley-type="number"
+                    )
             include ../pay-card-group
-                block pay-card-group
+                div(class='pay-card-group-wrap mob-hide tab-show')
+                    block pay-card-group
