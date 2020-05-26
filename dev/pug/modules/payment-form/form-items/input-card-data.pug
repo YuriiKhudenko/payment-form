@@ -1,0 +1,38 @@
+
+block input-card-data
+    div(class='payment-form__item input-card-data')
+        .payment-form__item-inp
+            label(class='payment-form__item-title') Exp. Date
+
+        .payment-form__inp-wrap
+            select(class='form-control card-month' name='card-month')
+                each elem,i  in month
+                    option(value=(i + 0)) #{elem}
+            span.payment-form__separator /
+            select(class='form-control card-year' name='card-year')
+                each elem,i  in years
+                    option(value=(i + 0)) #{elem}
+    div(class='payment-form__item input-card-cvv')
+        .payment-form__item-inp
+            label(class='payment-form__item-title') CVV/CVC
+        .payment-form__inp-wrap
+            input(type='text' class='form-control card-cvv' name='card-cvv' placeholder='XXXX')
+            div(class='tooltip-button payment-form__tooltip')
+                +icon('tooltip')
+                .tooltip-helper
+                    .tooltip-helper__container
+                        .card-item
+                            .card-item__icon
+                                +icon('amerexback')
+                            .card-item__title
+                                p Visa, MasterCard
+                            .card-item__text
+                               p 3-Digit Verification Number
+                        span.tooltip-helper-separator
+                        .card-item
+                            .card-item__icon
+                                +icon('visaback')
+                            .card-item__title
+                                p Visa, MasterCard
+                            .card-item__text
+                                p 3-Digit Verification Number
