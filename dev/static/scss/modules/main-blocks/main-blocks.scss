@@ -1,0 +1,147 @@
+.flex-row {
+  flex-flow: row nowrap!important;
+}
+.space-between {
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 20px;
+  color: $font-color;
+  line-height: 1.25;
+  text-align: center;
+  font-weight: 500;
+  @include tablet {
+    font-size: 24px;
+  }
+}
+
+.svg-sprite-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.form-control {
+  background: $white;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  width: 100%;
+  padding: 5px 10px;
+  font-size: 14px;
+
+  @include tablet {
+    max-width: 160px;
+  }
+}
+
+.paypal-pay {
+  background: #f7f7f7;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  border-radius: 6px;
+  padding: 12px 16px;
+
+  @include tablet {
+    width: 340px;
+    margin-left: auto;
+  }
+  @include laptop {
+    padding-top: 45px;
+    padding-bottom: 95px;
+  }
+
+  .paypal-pay__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include laptop {
+      flex-flow: column;
+    }
+  }
+  .paypal__text {
+    margin-right: 30px;
+    font-size: 14px;
+
+    @include laptop {
+      font-size: 18px;
+      margin: 0;
+    }
+  }
+  .paypal-pay__button {
+    background-image: url("../img/bitmap.jpg");
+    width: 100px;
+    height: 38px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+
+    @include laptop {
+      width: 137px;
+      height: 52px;
+      margin-top: 30px;
+    }
+  }
+}
+.tooltip-button {
+  width: 12px;
+  height: 12px;
+  padding: 5px;
+  display: flex;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+.tooltip-helper {
+  display: none;
+  position: absolute;
+  background-color: $white;
+  border: 1px solid #dadada;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.21);
+  border-radius: 3px;
+  z-index: 2;
+  right: -12px;
+  bottom: 27px;
+
+  &.show {
+    display: block;
+  }
+
+  &:after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    border: 1px solid #dadada;
+    background-color: $white;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    position: absolute;
+    right: 10px;
+    bottom: -8px;
+    transform: rotate(45deg);
+  }
+  .tooltip-helper__container {
+    display: flex;
+    padding: 20px;
+  }
+  .card-item__icon {
+    width: 108px;
+    height: 67px;
+  }
+  .card-item__title {
+    font-size: 12px;
+    padding-top: 15px;
+    font-weight: bold;
+  }
+  .card-item__text {
+    font-size: 12px;
+  }
+  .tooltip-helper-separator {
+    width: 1px;
+    background-color: #dadada;
+    margin: 0 15px;
+  }
+}

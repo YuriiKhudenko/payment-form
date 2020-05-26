@@ -1,0 +1,24 @@
+.btn {
+  position: relative;
+  box-sizing: border-box;
+  color: inherit;
+  display: block;
+  font-weight: inherit;
+  text-decoration: none;
+  line-height: inherit;
+  cursor: pointer;
+  border-radius: 3px;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+  font-size: 14px;
+}
+.btn-action {
+  color: $white;
+  padding: 10px 20px;
+  height: 40px;
+  background-color: $action-button;
+  border: 1px solid #fd7722;
+  font-weight: 700;
+}

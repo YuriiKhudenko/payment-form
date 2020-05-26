@@ -2,10 +2,23 @@ extends layout/main
 
 block variables
 	-const title = 'Payment form'
+	-const month = ['MM', 'Jen','Feb', 'Mar','Apr', 'May','Jun', 'Jul','Aug', 'Sep','Oct', 'Nov','Dec']
+	-const years = ['YYYY', 2020, 2021,2022,2023,2024,2025]
 
 block content
 	.container
-		p test
+		.payment-form-wrap
+			h1(class='payment-form-wrap__title title') Thank you for choosing to subscribe to PDFfiller services!
+
+			.pay-card-group-wrap
+				include modules/payment-form/pay-card-group
+					block pay-card-group
+
+			include modules/payment-form/form
+				block form
+
+
+
 
 
 

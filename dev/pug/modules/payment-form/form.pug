@@ -1,0 +1,24 @@
+
+
+block form
+    form(action='/' method='POST' class='payment-form-wrap__form payment-form')
+
+        .payment-form__inputs-wrap
+
+            include ./form-items/input-names
+                block input-names
+
+            include ./form-items/input-card
+                block input-card
+
+            .payment-form__dbl-item
+                include ./form-items/input-card-data
+                    block input-card-data
+
+            include ./form-items/input-zip
+                block input-zip
+
+        include ./paypal-item
+            block paypal-item
+
+        button(type='submit' class='btn btn-action payment-form__sbmt-btn') Start My Subscription for $19.99/mo.

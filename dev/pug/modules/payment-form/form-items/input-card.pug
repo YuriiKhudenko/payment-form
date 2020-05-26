@@ -1,0 +1,9 @@
+
+block input-card
+    div(class='payment-form__item input-card')
+        .payment-form__item-inp
+            label(class='payment-form__item-title') Card Number
+        .payment-form__inp-wrap
+            input(type='text' class='form-control' name='card-number' id='card-number-inp' placeholder='.... .... .... ....')
+            include ../pay-card-group
+                block pay-card-group

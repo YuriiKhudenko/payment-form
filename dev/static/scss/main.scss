@@ -4,7 +4,7 @@
 @import "utils/fonts.scss";
 
 html {
-  font-family: 'SF UI Text', Arial, serif;
+  font-family: Arial, serif;
   font-size: 16px;
   height: 100%;
 }
@@ -23,7 +23,7 @@ body {
 body, h1, h2, h3, h4, h5, h6, p, ol, ul {
   margin: 0;
   padding: 0;
-  font-weight: normal;
+  font-weight: inherit;
   color: $font-color;
 }
 
@@ -56,6 +56,11 @@ section { position: relative; }
 input,
 select,
 button { outline: none; }
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 
 .wrapper {
   display: flex;
