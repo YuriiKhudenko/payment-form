@@ -13,7 +13,8 @@ block input-card-data
                     option(disabled selected) MM
                     each elem,i  in month
                         option(value=(i + 1)) #{elem}
-                +icon('select-arrow')
+                .icon-select-arrow
+                    include ../../../../static/img/svg/select-arrow.svg
 
             span.payment-form__separator /
             .inp-message-wrap
@@ -24,7 +25,8 @@ block input-card-data
                     option(disabled selected) YYYY
                     each elem,i  in years
                         option(value=(i + 1)) #{elem}
-                +icon('select-arrow')
+                .icon-select-arrow
+                    include ../../../../static/img/svg/select-arrow.svg
 
     div(class='payment-form__item input-card-cvv')
         .payment-form__item-inp
@@ -41,12 +43,12 @@ block input-card-data
                     data-parsley-maxlength="4"
                     data-parsley-type="number")
                 div(class='tooltip-button payment-form__tooltip')
-                    +icon('tooltip')
+                    include ../../../../static/img/svg/tooltip.svg
                     .tooltip-helper
                         .tooltip-helper__container
                             .card-item
                                 .card-item__icon
-                                    +icon('amerexback')
+                                    include ../../../../static/img/svg/amerexback.svg
                                 .card-item__title
                                     p Visa, MasterCard
                                 .card-item__text
@@ -54,7 +56,7 @@ block input-card-data
                             span.tooltip-helper-separator
                             .card-item
                                 .card-item__icon
-                                    +icon('visaback')
+                                    include ../../../../static/img/svg/visaback.svg
                                 .card-item__title
                                     p Visa, MasterCard
                                 .card-item__text
