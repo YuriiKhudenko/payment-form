@@ -87,7 +87,7 @@ $(document).ready(function () {
 
       success: function (data) {
         console.log('form submitted successfully');
-        console.log('data = ', data);
+        console.log(data);
       },
       error: function (xhr, ajaxOptions, thrownError) {
         console.log(xhr.status);
