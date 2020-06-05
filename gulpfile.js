@@ -1,123 +1,131 @@
-const gulp = require('gulp');
+const project_folder = 'build';
+const source_folder = 'dev';
 
-// ======= PUG ========
-const pug = require('gulp-pug');
+const path = {
+  build: {
+    html: project_folder+'/',
+    css: project_folder+'/css/',
+    img: project_folder+'/img/',
+    js: project_folder+'/js/'
+  },
+  dev: {
+    html: source_folder+'/pug/index.pug',
+    css: source_folder+'/static/scss/main.scss',
+    img: source_folder+'/static/img/**/*.{jpg,png,svg}',
+    js: source_folder+'/static/js/main.js'
+  },
+  watch: {
+    html: source_folder+'/pug/**/*.pug',
+    css: source_folder+'/static/scss/**/*.scss',
+    js: source_folder+'/static/js/**/*js',
+    img: source_folder+'/static/img/**/*.{jpg,png,svg}'
+  },
+  clean: "./" + project_folder +'/'
+};
 
-// ======= SCSS ========
-const scss = require('gulp-sass');
-const csso = require('gulp-csso');
-const sourcemaps = require('gulp-sourcemaps');
-const autoprefixer = require('gulp-autoprefixer');
+const { src, dest } = require('gulp'),
+  gulp = require('gulp'),
+  browsersync = require('browser-sync').create(),
+  pug = require('gulp-pug'),
+  del = require('del'),
+  scss = require('gulp-sass'),
+  sourcemaps = require('gulp-sourcemaps'),
+  autoprefixer = require('gulp-autoprefixer'),
+  csso = require('gulp-csso'),
+  uglify = require('gulp-uglify'),
+  rename = require('gulp-rename'),
+  imagemin = require('gulp-imagemin'),
+  babel = require('gulp-babel'),
+  concat = require('gulp-concat');
 
-// ======= JS ========
-const babel = require('gulp-babel');
-const uglify = require('gulp-uglify');
-const concat = require('gulp-concat');
-
-// ======= SERVER ========
-const server = require('browser-sync').create();
-
-// ======= SVG ========
-const svgSprite = require('gulp-svg-sprite');
-const svgmin = require('gulp-svgmin');
-
-// ======= IMG ========
-const tinypng = require('gulp-tinypng');
-
-
-// ======= SERVER ========
-
-gulp.task('browser-sync', function () {
-  server.init({
+function browserSync() {
+  browsersync.init({
     server: {
-      baseDir: './build'
-    }
-  });
-  gulp.watch('dev/pug/**/*.pug', gulp.series('pug'));
-  gulp.watch('dev/static/scss/**/*.scss', gulp.series('scss'));
-  gulp.watch('dev/static/js/**/*.js', gulp.series('script'));
-  gulp.watch('dev/static/img/**/*.svg', gulp.series('svg'));
-  gulp.watch('dev/static/img/**/*.{png,jpg,gif}', gulp.series('img'));
-  server.watch('build', server.reload)
-});
+      baseDir: "./" + project_folder +'/'
+    },
+    port: 3000,
+    notify: false
+  })
+}
 
-// ======= PUG ========
+const pugCompile = () => {
+  return src(path.dev.html)
+    .pipe(pug({pretty: true}))
+    .pipe(dest(path.build.html))
+    .pipe(browsersync.stream())
+};
 
-gulp.task('pug', function () {
-  return gulp.src('dev/pug/*.pug')
-    .pipe(pug())
-    .pipe(gulp.dest('build'))
-});
-
-
-// ======= SCSS ========
-
-gulp.task('scss', function () {
-  return gulp.src('dev/static/scss/main.scss')
+const scssCompile = () => {
+  return src(path.dev.css)
     .pipe(sourcemaps.init())
-    .pipe(scss({ outputStyle: 'compressed' }).on('error', scss.logError))
-    .pipe(csso())
+    .pipe(scss())
     .pipe(autoprefixer({
-      overrideBrowserslist:  [ "last 4 version" ],
-      cascade: false
+      overrideBrowserslist: ['last 5 versions'],
+      cascade: true
+    }))
+    .pipe(dest(path.build.css))
+    .pipe(csso())
+    .pipe(rename({
+      extname: '.min.css'
     }))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('build/css/'))
-});
+    .pipe(dest(path.build.css))
+    .pipe(browsersync.stream())
+};
 
+const imgCompile = () => {
+  return src(path.dev.img)
+    .pipe(imagemin({
+      progressive: true,
+      svgoPlugins: [{removeViewBox: false}],
+      interlaced: true,
+      optimizationLevel: 3
+    }))
+    .pipe(dest(path.build.img))
+    .pipe(browsersync.stream())
+};
 
-// ======= JS ========
-gulp.task('script-libs', function () {
-  return gulp.src(['node_modules/jquery/dist/jquery.min.js',
-  'node_modules/parsleyjs/dist/parsley.min.js'])
+const jsLibsCompile = () => {
+  return src(['node_modules/jquery/dist/jquery.min.js',
+    'node_modules/parsleyjs/dist/parsley.min.js'])
     .pipe(concat('libs.min.js'))
-    .pipe(gulp.dest('build/js/libs'))
-});
+    .pipe(dest(path.build.js + '/libs'))
+};
 
-gulp.task('script', function () {
-  return gulp.src('dev/static/js/main.js')
+const jsCompile = () => {
+  return src(path.dev.js)
     .pipe(babel({
       presets: ['@babel/env']
     }))
+    .pipe(dest(path.build.js))
     .pipe(uglify())
-    .pipe(gulp.dest('build/js/'))
-});
-
-
-// ======= SVG ========
-
-gulp.task('svg', function () {
-  return gulp.src('dev/static/img/svg/*.svg')
-    .pipe(svgmin({
-      js2svg: {
-        pretty: true
-      }
+    .pipe(rename({
+      extname: '.min.js'
     }))
-    .pipe(svgSprite({
-      mode: {
-        symbol: {
-          sprite: "sprite.svg"
-        }
-      }
-    }))
-    .pipe(gulp.dest('build/img/svg/'))
-});
+    .pipe(dest(path.build.js))
+    .pipe(browsersync.stream())
+};
+
+const watchFiles = () => {
+  gulp.watch([path.watch.html], pugCompile);
+  gulp.watch([path.watch.css], scssCompile);
+  gulp.watch([path.watch.js], jsCompile);
+  gulp.watch([path.watch.img], imgCompile);
+};
+
+const clean = () => {
+  return del(path.clean);
+};
+
+const build = gulp.series(clean, gulp.parallel(pugCompile, scssCompile,
+  jsLibsCompile, jsCompile, imgCompile));
+const watch = gulp.parallel(build, watchFiles, browserSync);
 
 
-// ======= IMG ========
-
-gulp.task('img', function () {
-  return gulp.src('dev/static/img/*.{png,jpg,gif}')
-    .pipe(gulp.dest('build/img/'))
-});
-
-
-gulp.task('watch', function () {
-  gulp.watch('dev/pug/**/*.pug', gulp.series('pug'));
-  gulp.watch('dev/static/scss/**/*.scss', gulp.series('scss'))
-});
-
-gulp.task('default', gulp.series(
-  gulp.parallel('pug', 'scss', 'script', 'svg', 'img', 'script-libs'),
-  gulp.parallel('watch', 'browser-sync')
-));
+exports.imgCompile = imgCompile;
+exports.jsCompile = jsCompile;
+exports.pugCompile = pugCompile;
+exports.scssCompile = scssCompile;
+exports.build = build;
+exports.watch = watch;
+exports.default = watch;
