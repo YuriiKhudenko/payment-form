@@ -187,6 +187,7 @@ span.payment-form__error {
   display: none;
   position: absolute;
   bottom: 115%;
+  right: calc(50% - 70px);
   z-index: 100;
 
   list-style-type: none;

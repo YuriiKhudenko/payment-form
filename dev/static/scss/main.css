@@ -49,21 +49,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-@font-face {
-  font-family: "SF UI Text";
-  src: url(../../fonts/SanFrancisco/sfregular/SFUIText-Regular.woff) format("woff"), url(../../fonts/SanFrancisco/sfregular/SFUIText-Regular.woff2) format("woff2"), url(../../fonts/SanFrancisco/sfregular/SFUIText-Regular.ttf) format("truetype");
-  font-weight: 400;
-  font-style: "normal"; }
-@font-face {
-  font-family: "SF UI Text";
-  src: url(../../fonts/SanFrancisco/sfbold/SFUIText-Bold.woff) format("woff"), url(../../fonts/SanFrancisco/sfbold/SFUIText-Bold.woff2) format("woff2"), url(../../fonts/SanFrancisco/sfbold/SFUIText-Bold.ttf) format("truetype");
-  font-weight: 600;
-  font-style: "normal"; }
-@font-face {
-  font-family: "SF UI Text";
-  src: url(../../fonts/SanFrancisco/sfmedium/SFUIText-Medium.woff) format("woff"), url(../../fonts/SanFrancisco/sfmedium/SFUIText-Medium.woff2) format("woff2"), url(../../fonts/SanFrancisco/sfmedium/SFUIText-Medium.ttf) format("truetype");
-  font-weight: 500;
-  font-style: "normal"; }
 html {
   font-family: Arial, serif;
   font-size: 16px;
@@ -121,11 +106,6 @@ input,
 select,
 button {
   outline: none; }
-
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none; }
 
 .wrapper {
   display: flex;
@@ -349,6 +329,7 @@ span.payment-form__error {
   display: none;
   position: absolute;
   bottom: 115%;
+  right: calc(50% - 70px);
   z-index: 100;
   list-style-type: none;
   font-size: 0.8em;
@@ -426,6 +407,12 @@ span.payment-form__error {
       .pay-card-group .pay-card-group__item {
         margin-right: 5px; } }
 
+.payment-form select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
+  .payment-form select::-ms-expand {
+    display: none; }
 .payment-form .pay-card-group {
   display: none;
   margin-top: 0; }
@@ -481,6 +468,9 @@ span.payment-form__error {
   .payment-form .payment-form__item-inp {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    white-space: nowrap;
     min-width: 128px; } }
 .payment-form .fn-inp,
 .payment-form .ls-inp {
